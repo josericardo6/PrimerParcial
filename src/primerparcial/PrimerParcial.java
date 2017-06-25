@@ -11,7 +11,13 @@ import da.ListaEspaña;
 
 /**
  *
- * @author joser
+ * @author Jose Ricardo Rodriguez Moya
+ * @version 1.0
+ * 
+ * Descripcion: Primer parcial del curso Programacion 3
+ * 
+ * Creacion: 25 / 06 / 2017
+ * Ultima revision: 25 / 06 / 2017
  */
 public class PrimerParcial {
 
@@ -22,6 +28,8 @@ public class PrimerParcial {
         
         ListaChile lc = new ListaChile();
         ListaEspaña le = new ListaEspaña();
+        
+        ////////////////////////////////////////////////////////////////////////AGREGAR JUGADORES A LISTAS
         
         Jugador bravo = new Jugador("Claudio","Bravo","Portero",27,null);
         Jugador ismael = new Jugador("Ismael","Fuentes","Defensa",28,null);
@@ -55,40 +63,37 @@ public class PrimerParcial {
         
         
         Jugador iker = new Jugador("Iker","Casillas","Portero",29,null);
-        Jugador javi = new Jugador("Javi","Martinez","Defensa",21,null);
-        Jugador ramos = new Jugador("Sergio","Ramos","Defensa",24,null);
-        Jugador silva = new Jugador("David","Silva","Mediocampo",21,null);
-        Jugador alba = new Jugador("Jordi","Alba","Defensa",21,null);
-        Jugador cesar = new Jugador("Cesar","Azpilicueta","Defensa",21,null);
-        Jugador iniesta = new Jugador("Andres","Iniesta","Mediocampo",26,null);
-        Jugador pedro = new Jugador("Pedro","Rodriguez","Madiocampo",22,null);
-        Jugador alonso = new Jugador("Xabi","Alonso","Mediocampo",28,null);
-        Jugador sergio = new Jugador("Sergio","Busquets","Mediocampo",21,null);
-        Jugador costa = new Jugador("Diego","Costa","Delantero",21,null);
+        Jugador javi = new Jugador("Javi","Martinez","Defensa",21,"Gonzales");
+        Jugador ramos = new Jugador("Sergio","Ramos","Defensa",24,"Orellana");
+        Jugador silva = new Jugador("David","Silva","Mediocampo",21,"Vidal");
+        Jugador alba = new Jugador("Jordi","Alba","Defensa",21,"Sanches");
+        Jugador cesar = new Jugador("Cesar","Azpilicueta","Defensa",21,"Valvidia");
+        Jugador iniesta = new Jugador("Andres","Iniesta","Mediocampo",26,"Isla");
+        Jugador pedro = new Jugador("Pedro","Rodriguez","Mediocampo",22,"Jara");
+        Jugador alonso = new Jugador("Xabi","Alonso","Mediocampo",28,"Carmona");
+        Jugador sergio = new Jugador("Sergio","Busquets","Mediocampo",21,"Fernandez");
+        Jugador costa = new Jugador("Diego","Costa","Delantero",21,"Medel");
         
         le.add(iker); le.add(javi); le.add(ramos); le.add(alba); le.add(cesar); 
         le.add(iniesta); le.add(alonso); le.add(silva); le.add(sergio); le.add(costa); 
         le.add(pedro);
         
-//        lc.ordernaEdad();
-//        le.añadirMarcaje();
+        System.out.println(lc.toString()); /////////////////////////////////////IMPRIME LA LISTA DE LA SELECCION DE CHILE
+        System.out.println(le.toString()); /////////////////////////////////////IMPRIME LA LISTA DE LA SELECCION DE ESPAÑA
         
-        lc.remove("Humberto");
+        lc.remove("Humberto"); /////////////////////////////////////////////////ELIMINA A SUAZO DE LA LISTA POR LESION
         
         Jugador pinilla = new Jugador("Mauricio","Pinilla","Delantero",27,null);
-        lc.add(pinilla);
+        lc.add(pinilla);////////////////////////////////////////////////////////AÑADE A PINILLA A LA LISTA DE CONVOCADOS
 
-        le.añadirMarcaje(lc);
         
-        System.out.println(lc.printLineUp("1-4-3-3"));
-//        System.out.println(le.printLineUp("1-4-5-1"));
+        System.out.println(lc.printLineUp("1-4-3-3")); /////////////////////////IMPRIME LA FORMACION DE CHILE SEGUN DESEADA
         
-//        System.out.println(lc.toString());
-        System.out.println(le.toString());
-        
-        
-        
-        
+        System.out.println(le.printLineUp("1-4-5-1")); /*////////////////////////IMPRIME LA FORMACION DE ESPAÑA 
+                                           1-4-5-1                              (¡¡NO EDITABLE!! POR # DE JUGADORES Y SUS POSICIONES)*/
+       
+        System.out.println(le.imprimeConMarca()); /*/////////////////////////////IMPRIME LA LISTA DE JUGADORES DE ESPAÑA CON SUS RESPECTIVAS
+                                                                                 MARCAS*/                                                                   
         
     }
     

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package da;
 
 /**
@@ -75,25 +71,16 @@ public class ListaChile {
         Nodo aux = cabeza;
         Nodo aux2 = cabeza;
         
-        for(int i = 0; i < size; i++){
-            
-            while(aux2.getSig() != null){
-                
+        for(int i = 0; i < size; i++){           
+            while(aux2.getSig() != null){               
                 if(aux.getPlayer().getEdad() > aux.getSig().getPlayer().getEdad()){
-                 
-                    
-                    
-                }
-    
-                aux2 = aux2.getSig();
-                
-            }
-            
+                   
+                }    
+                aux2 = aux2.getSig();               
+            }            
             aux = aux.getSig();
-            aux2 = cabeza;
-      
+            aux2 = cabeza;      
         }
-        
         return true;
     }
     
@@ -110,17 +97,13 @@ public class ListaChile {
         Nodo temp = cabeza;
         int index = 0;
         
-        while(!nombre.equals(temp.getPlayer().getNombre())){
-            
+        while(!nombre.equals(temp.getPlayer().getNombre())){           
             index++;
-            temp = temp.getSig();
-            
+            temp = temp.getSig();            
         }
         
-        if(index < 0 || index >= size){
-            
-            throw new ArrayIndexOutOfBoundsException("El indice es invalido");
-            
+        if(index < 0 || index >= size){       
+            throw new ArrayIndexOutOfBoundsException("El indice es invalido");   
         }
         if(index == 0){   
             cabeza = cabeza.getSig();   
@@ -194,10 +177,10 @@ public class ListaChile {
     /**
      * <h1>printLineUp</h1>
      * <p>
-     * Metodo que añade un jugador a la lista.</p>
+     * Metodo que añade una marca a cada jugador.</p>
      *
      * @param lineUp
-     * @return boolean: true/false
+     * @return String: alineacion del equipo
      */
     public String printLineUp(String lineUp){
         
@@ -208,7 +191,7 @@ public class ListaChile {
         
         int totalFormacion = por+def+med+dela;
         
-        String alineacion = "";
+        String alineacion = "-------CHILE \n\n          ";
         
         if(totalFormacion > 11 || totalFormacion < 11){
             
@@ -246,11 +229,13 @@ public class ListaChile {
                     aux = aux.getSig();
                 }
 
+                /////////////////////////////////////////////////////////////// Inicia creacion de formacion
+                
                 Nodo auxPor = porteros.getCabeza();
 
                 for(int i = 1; i <= por; i++){ // PORTEROS
 
-                    alineacion +=  auxPor.getPlayer().getNombre() + "\n\n";
+                    alineacion +=  auxPor.getPlayer().getApellido() + "\n\n";
                     auxPor = auxPor.getSig();
 
                 }
@@ -259,7 +244,7 @@ public class ListaChile {
 
                 for(int i = 1; i <= def; i++){ // DEFENSAS
 
-                    alineacion +=  auxDef.getPlayer().getNombre() + " - ";
+                    alineacion +=  auxDef.getPlayer().getApellido() + " - ";
                     auxDef = auxDef.getSig();
                 }
 
@@ -270,7 +255,7 @@ public class ListaChile {
 
                 for(int i = 1; i <= med; i++){ // MEDIOCAMPOS
 
-                    alineacion +=  auxMed.getPlayer().getNombre() + " - ";
+                    alineacion +=  auxMed.getPlayer().getApellido() + " - ";
                     auxMed = auxMed.getSig();
                 }
 
@@ -281,10 +266,12 @@ public class ListaChile {
 
                 for(int i = 1; i <= dela; i++){ // DELANTEROS
 
-                    alineacion +=  auxDela.getPlayer().getNombre() + " - ";
+                    alineacion +=  auxDela.getPlayer().getApellido() + " - ";
                     auxDela = auxDela.getSig();
                 }
 
+                /////////////////////////////////////////////////////////////// Termina creacion de formacion
+                
                 System.out.println("\n");
 
             }//fin else

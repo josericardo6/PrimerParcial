@@ -54,7 +54,6 @@ public class ListaEspaña {
                     + " " + aux.getPlayer().getApellido() 
                     + " / " + aux.getPlayer().getEdad()
                     + " años / " + aux.getPlayer().getPosicion()
-                    + " / marca asignada: " + aux.getPlayer().getMarca()
                     + "\n"; 
             
             aux = aux.getSig(); 
@@ -78,6 +77,7 @@ public class ListaEspaña {
         
         if(cabeza == null){
             cabeza = nuevo;
+            size++;
         }else if (player.getPosicion().compareTo(cabeza.getPlayer().getPosicion()) > 0) {
             nuevo.setSig(cabeza);
             cabeza.setAnt(nuevo);
@@ -103,60 +103,14 @@ public class ListaEspaña {
         
     }
     
-
-    
     /**
-     * <h1>ordenarPosicion</h1>
-     * <p>
-     * Metodo que oderna la lista segun la posicion de los jugadores.</p>
-     *
-     * @return boolean: true/false
-     */
-    public boolean ordernaPosicion(){
-        
-        
-        return true;
-    }
-    
-    /**
-     * <h1>añadirMarcaje</h1>
+     * <h1>printLineUp</h1>
      * <p>
      * Metodo que añade una marca a cada jugador.</p>
      *
-     * @param lc
-     * @return boolean: true/false
+     * @param lineUp
+     * @return String: alineacion del equipo
      */
-    public boolean añadirMarcaje(ListaChile lc){
-        
-        Nodo aux = cabeza;
-        Nodo aux2 = lc.getCabeza();
-        
-        for(int i = 0; i < size; i++){
-  
-            for(int j = 0; j < 23;j++){
-                
-//                if(i != 0 && aux.getAnt().getPlayer().getMarca().equals(aux2.getPlayer().getNombre())){
-//                    
-//          
-//                }
-                
-                if(aux.getPlayer().getPosicion().equals(aux2.getPlayer().getPosicion())){
-                    
-                    aux.getPlayer().setMarca(aux2.getPlayer().getNombre());
-                    
-                }
-                
-                aux2 = aux2.getSig();
-                
-            }
-            
-            aux = aux.getSig();
-            aux2 = lc.getCabeza();
-        }
-        
-        return true;
-    }
-    
     public String printLineUp(String lineUp){
         
         int por = Integer.parseInt(lineUp.substring(0,1));
@@ -166,7 +120,7 @@ public class ListaEspaña {
         
         int totalFormacion = por+def+med+dela;
         
-        String alineacion = "";
+        String alineacion = "-------ESPAÑA \n\n                   ";
         
         if(totalFormacion > 11 || totalFormacion < 11){
             
@@ -184,7 +138,7 @@ public class ListaEspaña {
                 ListaEspaña delanteros = new ListaEspaña();
 
                 Nodo aux = cabeza;
-                int cont = 0;
+ 
                 for(int i = 0; i < size; i++){
 
                     switch(aux.getPlayer().getPosicion()){
@@ -193,7 +147,6 @@ public class ListaEspaña {
                             break;
                         case "Defensa":
                             defensas.add(aux.getPlayer());
-                            cont++;
                             break;
                         case "Mediocampo":
                             mediocampos.add(aux.getPlayer());
@@ -204,14 +157,14 @@ public class ListaEspaña {
                     }
                     aux = aux.getSig();
                 }
-
-                System.out.println(cont);
+                
+                /////////////////////////////////////////////////////////////// Inicia creacion de formacion
                 
                 Nodo auxPor = porteros.getCabeza();
 
                 for(int i = 1; i <= por; i++){ // PORTEROS
 
-                    alineacion +=  auxPor.getPlayer().getNombre() + "\n\n";
+                    alineacion +=  auxPor.getPlayer().getApellido()+ "\n\n      ";
                     auxPor = auxPor.getSig();
 
                 }
@@ -220,32 +173,34 @@ public class ListaEspaña {
 
                 for(int i = 1; i <= def; i++){ // DEFENSAS
 
-                    alineacion +=  auxDef.getPlayer().getNombre() + " - ";
+                    alineacion +=  auxDef.getPlayer().getApellido() + " - ";
                     auxDef = auxDef.getSig();
                 }
 
                 alineacion = alineacion.substring(0, alineacion.length()-2);
-                alineacion += "\n\n";
+                alineacion += "\n\n ";
 
                 Nodo auxMed = mediocampos.getCabeza();
 
                 for(int i = 1; i <= med; i++){ // MEDIOCAMPOS
 
-                    alineacion +=  auxMed.getPlayer().getNombre() + " - ";
+                    alineacion +=  auxMed.getPlayer().getApellido() + " - ";
                     auxMed = auxMed.getSig();
                 }
 
                 alineacion = alineacion.substring(0, alineacion.length()-2);
-                alineacion += "\n\n";
+                alineacion += "\n\n                   ";
 
                 Nodo auxDela = delanteros.getCabeza();
 
                 for(int i = 1; i <= dela; i++){ // DELANTEROS
 
-                    alineacion +=  auxDela.getPlayer().getNombre() + " - ";
+                    alineacion +=  auxDela.getPlayer().getApellido() + " - ";
                     auxDela = auxDela.getSig();
                 }
 
+                /////////////////////////////////////////////////////////////// Termina creacion de formacion
+                
                 System.out.println("\n");
 
             }//fin else
@@ -254,6 +209,41 @@ public class ListaEspaña {
         alineacion += "\n\n";
         
         return alineacion;
+    }
+    
+    /**
+     * <h1>imprimeConMarca</h1>
+     * <p>
+     * Metodo que imprime la lista de jugadores con sus respectivas marcas.</p>
+     *
+     * @return String: lista de jugadores con sus marcas
+     */
+    public String imprimeConMarca(){
+        
+        Nodo aux = cabeza; //Inicializa el nodo auxiliar con el valor de la cabeza
+        String resultado = "MARCAS ASIGNADAS \n\n";
+        int cont = 1;
+        
+        for(int i = 0; i < size; i++){
+            
+            resultado += cont + ") "
+                    +"Jugador: " + aux.getPlayer().getNombre()
+                    + " " + aux.getPlayer().getApellido()
+                    + " / Marca asignada: " +aux.getPlayer().getMarca();
+            
+            if(i == 0){
+                
+                resultado = resultado.substring(0, resultado.length()-23);
+                
+            }
+            
+            resultado += "\n";
+            
+            aux = aux.getSig(); 
+            cont++;
+        }
+        
+        return resultado;
     }
     
 }
